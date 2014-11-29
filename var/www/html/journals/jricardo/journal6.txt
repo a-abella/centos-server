@@ -1,0 +1,117 @@
+9-22-14: Installed Tomcat and modified it.
+
+HOW-TO:
+
+First we install java with this command:
+
+yum install java-1.7.0-openjdk.x86_64
+
+Use this command to make sure this version of java is installed:
+
+java -version
+
+Download the Tomcat Zip file, unzip it, and rename it.
+
+cd /opt
+wget 
+http://apache.osuosl.org/tomcat/tomcat-8/v8.0.12/bin/apache-tomcat-8.0.12-windows-x64.zip
+unzip apache-tomcat-8.0.12-windows-x64.zip
+mv apache-tomcat-8.0.12 tomcat
+
+Set environment varaibles by creating a new script in /etc/profile.d.
+
+vi /etc/profile.d/script.sh
+
+And the script has these entries in it:
+
+#!/bin/bash
+CATALINA_HOME=/opt/tomcat
+PATH=$CATALINA_HOME/bin:$PATH
+export PATH CATALINA_HOME
+export CLASSPATH=.
+
+Give the script execute permissions:
+
+chmod +x /etc/profile.d/script.sh
+
+Make the environment variables permanent:
+
+source /etc/profile.d/script.sh
+
+Give execute permissions to the following:
+
+chmod +x $CATALINA_HOME/bin/startup.sh
+chmod +x $CATALINA_HOME/bin/shutdown.sh
+chmod +x $CATALINA_HOME/bin/catalina.sh
+
+Now we start Tomcat:
+
+$CATALINA_HOME/bin/startup.sh
+
+Create user account(s) and access admin/manager pages.
+
+$CATALINA_HOME/conf/tomcat-users.xml
+
+Then we need to restart Tomcat:
+
+cd $CATALINA_HOME
+./bin/catalina.sh stop
+./bin/catalina.sh start
+
+To configure "catalina" to start automatically when the server is 
+booted, run these commands:
+
+cd /etc/rc5.d
+sudo ln -s ../init.d/tomcat S71tomcat
+
+The second above command creates a link to the script. Now we make the 
+script:
+
+nano /etc/init.d/tomcat
+
+And insert this content:
+
+-----------------------------------------------------------------
+#!/bin/bash
+#
+# tomcat        
+#
+# chkconfig: 
+# description: 	Start up the Tomcat servlet engine.
+
+# Source function library.
+. /etc/init.d/functions
+
+
+RETVAL=$?
+CATALINA_HOME="/usr/apps/apache/tomcat/jakarta-tomcat-4.0.4"
+
+case "$1" in
+ start)
+        if [ -f $CATALINA_HOME/bin/startup.sh ];
+          then
+	    echo $"Starting Tomcat"
+            /bin/su tomcat $CATALINA_HOME/bin/startup.sh
+        fi
+	;;
+ stop)
+        if [ -f $CATALINA_HOME/bin/shutdown.sh ];
+          then
+	    echo $"Stopping Tomcat"
+            /bin/su tomcat $CATALINA_HOME/bin/shutdown.sh
+        fi
+ 	;;
+ *)
+ 	echo $"Usage: $0 {start|stop}"
+	exit 1
+	;;
+esac
+
+exit $RETVAL
+-----------------------------------------------------------------
+
+Post links on Servlets_and_JSPs_Examples.txt to access the demos 
+included with the Tomcat distribution.
+
+http://dbexplorer.com/tomcat/tomcat6-18080/loader.html
+http://tomcat.apache.org/tomcat-6.0-doc/aio.html

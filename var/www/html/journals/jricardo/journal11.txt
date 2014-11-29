@@ -1,0 +1,45 @@
+10-15-14: Installed Wordpress
+
+HOW-TO:
+
+Run the following commands to download the zipped file in the web root 
+
+folder:
+
+cd /var/www/html
+wget http://wordpress.org/latest.tar.gz
+
+If the last command doesn't work, run this one:
+
+wget http://wordpress.org/latest.tar.gz --no-check-certificate
+
+Then unzip it:
+
+tar -xzvf latest.tar.gz
+
+Go into wordpress, backup the file wp-config-sample.php then change it 
+to 
+
+wp-config.php.
+
+cd wordpress
+cp wp-config-sample.php wp-config-backup.php
+cat wp-config-sample.php wp-config.php
+
+Then open wp-config.php:
+
+nano wp-config.php
+
+Change the following settings in wp-config.php:
+
+define('DB_NAME', 'putyourdbnamehere'); // The name of the database
+define('DB_USER', 'usernamehere'); // Your MySQL username
+define('DB_PASSWORD', 'yourpasswordhere'); // ...and password
+define('DB_HOST', 'localhost'); // 99% chance you won't need to change 
+this 
+
+value
+
+To install wordpress, go to the following link:
+
+http://[server_address]/wordpress/wp-admin/install.php

@@ -1,0 +1,23 @@
+9-16-14: We created the profe portal and then configured Apache to 
+enable 
+requests to that portal.
+
+HOW-TO:
+
+Go to user's home directory, create a directory called public_html in 
+the user's home directory, enter that directory and create a default web 
+page and other html documents (optional) to make a personal portal for 
+that user.
+
+cd/home/user
+mkdir public_html
+cd public_html
+touch index.html
+
+Then, file permissions and Selinux conditions must be set so that the 
+portal is enabled.
+
+chmod 704 /home/user/public_html
+
+setsebool -P httpd_enable_homedirs true
+chcon -v -R -h -u user_u -t httpd_user_content_t /home/user/public_html

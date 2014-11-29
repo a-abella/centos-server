@@ -1,0 +1,384 @@
+8-25-14: Installed httpd and configured access through port 80.
+
+HOW-TO:
+
+Logged in as root:
+
+yum install httpd
+chkconfig --add httpd
+chkconfig httpd on
+service httpd start
+
+Configuring httpd:
+
+ configuration file located at /etc/httpd/config/httpd.conf
+ 
+ In text editor:
+ 
+  Find entry '#ServerName www.example.com:80'
+  add below:
+   ServerName 131.94.134.13:80
+
+  Find entry '#ServerAdmin root@localhost'
+   add below:
+   ServerAdmin [an email address here]
+
+Restart httpd for changes to take effect
+
+ service httpd restart
+
+
+Configure access over port 80 (Apache default Listen port)
+
+Firewall configuration through either iptables command or iptables file
+
+using file (located at /etc/sysconfig/iptables)
+
+ add before final REJECT statement:
+
+  -A RH-Firewall-1-INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT
+
+Restart firewall service:
+
+ service iptables restart
+
+
+Apache test page should now be accessible remotely via http://131.94.134.13
+
+9-8-14: Implemented server protection for user accounts.
+
+HOW-TO:
+
+Go to Apache
+
+cd /var/www/html
+
+Create a seperate subdirectory in Apache
+
+mkdir journals
+cd journals
+
+Create the .htaccess file and insert contents:
+
+AuthType Basic
+AuthName "Restricted Files"
+# (Following line optional)
+AuthBasicProvider file
+AuthUserFile /var/www/passwd/passwords
+Require valid-user
+
+Go to /var/www/ and create new directory called passwd
+
+cd ../../
+mkdir passwd
+cd passwd
+
+Create password for users entered in .htaccess to make new .htpasswd file, using -c to clear if needed
+
+htpasswd -c .htpasswd user
+
+If there are multiple users, use command for each, but without -c
+
+htpasswd .htpasswd user2
+
+Enter password twice to finish implementing password protection for user account(s).
+
+9-15-14: Added profe account to sudoers by adding to a new line below line 82 of etc/sudoers the following:
+
+profe ALL=(ALL)		ALL
+
+HOW-TO:
+
+Access etc/sudoers through a text editor, such as nano.
+
+nano /etc/sudoers
+
+Scroll down to the command section and add the name of a user under the root and type:
+
+user ALL=(ALL)		ALL
+
+Press Ctrl+X to save, press Y for Yes, then hit enter to close nano.
+
+8-16-14: We created the profe portal and then configured Apache to enable 
+requests to that portal.
+
+HOW-TO:
+
+Go to user's home directory, create a directory called public_html in 
+the user's home directory, enter that directory and create a default web 
+page and other html documents (optional) to make a personal portal for 
+that user.
+
+cd/home/user
+mkdir public_html
+cd public_html
+touch index.html
+
+Then, file permissions and Selinux conditions must be set so that the 
+portal is enabled.
+
+chmod 704 /home/user/public_html
+
+setsebool -P httpd_enable_homedirs true
+chcon -v -R -h -u user_u -t httpd_user_content_t /home/user/public_html
+
+8-17-14: Installed Webmin (Web Based System Administration Tool) and 
+Usermin (Web Based User 
+
+Administration Tool)
+
+HOW-TO:
+
+To install Webmin, run the following commands:
+
+wget 
+http://prdownloads.sourceforge.net/webadmin/webmin-1.650-1.noarch.rpm
+rpm -U webmin-1.650-1.noarch.rpm
+nano /etc/sysconfig/iptables
+
+Delete the RPM Package (webmin-1.650-1.noarch.rpm) to minimize disk 
+usage.
+
+Add the following rule above the REJECT rule:
+
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 10000 
+-j ACCEPT
+
+Then restart IP routing with this command:
+
+service iptables restart
+
+To install Usermin, run the following commands:
+
+wget 
+http://prdownloads.sourceforge.net/webadmin/usermin-1.560-1.noarch.rpm
+rpm –U usermin-1.560-1.noarch.rpm
+
+Log into Webmin as root, find the install page for Usermin, and install 
+the Usermin service, then run 
+
+this command:
+
+service usermin start
+
+Delete the RPM Package (usermin-1.560-1.noarch.rpm) to minimize disk 
+usage.
+
+Add the following rule above the REJECT rule:
+
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 20000 
+-j ACCEPT
+
+Then restart IP routing with this command:
+
+service iptables restart
+
+Installing the "mkpasswd" tool in my server:
+
+yum whatprovides */mkpasswd
+
+This command identifies the proper package that includes this tool, 
+which is "expect-5.43.0-8.el5.i386.rpm".
+
+The following commands download and install the "mkpasswd" tool:
+
+wget ftp://195.220.108.108/linux/centos/5.10/os/x86_64/CentOS/expect-5.43.0-8.el5.i386.rpm
+yum install expect-5.43.0-8.el5.i386.rpm
+
+8-22-14: Installed Tomcat and modified it.
+
+HOW-TO:
+
+First we install java with this command:
+
+yum install java-1.7.0-openjdk.x86_64
+
+Use this command to make sure this version of java is installed:
+
+java -version
+
+Download the Tomcat Zip file, unzip it, and rename it.
+
+cd /opt
+wget 
+http://apache.osuosl.org/tomcat/tomcat-8/v8.0.12/bin/apache-tomcat-8.0.12-windows-x64.zip
+unzip apache-tomcat-8.0.12-windows-x64.zip
+mv apache-tomcat-8.0.12 tomcat
+
+Set environment varaibles by creating a new script in /etc/profile.d.
+
+vi /etc/profile.d/script.sh
+
+And the script has these entries in it:
+
+#!/bin/bash
+CATALINA_HOME=/opt/tomcat
+PATH=$CATALINA_HOME/bin:$PATH
+export PATH CATALINA_HOME
+export CLASSPATH=.
+
+Give the script execute permissions:
+
+chmod +x /etc/profile.d/script.sh
+
+Make the environment variables permanent:
+
+source /etc/profile.d/script.sh
+
+Give execute permissions to the following:
+
+chmod +x $CATALINA_HOME/bin/startup.sh
+chmod +x $CATALINA_HOME/bin/shutdown.sh
+chmod +x $CATALINA_HOME/bin/catalina.sh
+
+Now we start Tomcat:
+
+$CATALINA_HOME/bin/startup.sh
+
+Create user account(s) and access admin/manager pages.
+
+$CATALINA_HOME/conf/tomcat-users.xml
+
+Then we need to restart Tomcat:
+
+cd $CATALINA_HOME
+./bin/catalina.sh stop
+./bin/catalina.sh start
+
+To configure "catalina" to start automatically when the server is 
+booted, run these commands:
+
+cd /etc/rc5.d
+sudo ln -s ../init.d/tomcat S71tomcat
+
+The second above command creates a link to the script. Now we make the 
+script:
+
+nano /etc/init.d/tomcat
+
+And insert this content:
+
+-----------------------------------------------------------------
+#!/bin/bash
+#
+# tomcat        
+#
+# chkconfig: 
+# description: 	Start up the Tomcat servlet engine.
+
+# Source function library.
+. /etc/init.d/functions
+
+
+RETVAL=$?
+CATALINA_HOME="/usr/apps/apache/tomcat/jakarta-tomcat-4.0.4"
+
+case "$1" in
+ start)
+        if [ -f $CATALINA_HOME/bin/startup.sh ];
+          then
+	    echo $"Starting Tomcat"
+            /bin/su tomcat $CATALINA_HOME/bin/startup.sh
+        fi
+	;;
+ stop)
+        if [ -f $CATALINA_HOME/bin/shutdown.sh ];
+          then
+	    echo $"Stopping Tomcat"
+            /bin/su tomcat $CATALINA_HOME/bin/shutdown.sh
+        fi
+ 	;;
+ *)
+ 	echo $"Usage: $0 {start|stop}"
+	exit 1
+	;;
+esac
+
+exit $RETVAL
+-----------------------------------------------------------------
+
+Post links on Servlets_and_JSPs_Examples.txt to access the demos 
+included with the Tomcat distribution.
+
+http://dbexplorer.com/tomcat/tomcat6-18080/loader.html
+http://tomcat.apache.org/tomcat-6.0-doc/aio.html
+
+8-22-14: Downloaded, installed, and configured GlassFish Server on the 
+VM.
+
+HOW-TO:
+
+Run these commands:
+
+wget  
+http://dlc.sun.com.edgesuite.net/glassfish/4.0/release/glassfish-4.0.zip
+unzip glassfish-4.0.zip
+
+For space efficiency, we delete the zip file:
+
+rm glassfish-4.0.zip 
+
+Then open ports 4848 and 8888.
+
+nano /etc/sysconfig/iptables
+
+Add the following lines to iptables:
+
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 4848 
+-j ACCEPT
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 8888 
+-j ACCEPT
+
+Restart iptables:
+
+service iptables restart
+
+To change default port to 8888:
+
+cd glassfish4/glassfish/domains/domain1/config
+nano domain.xml
+
+Find the following line:
+
+<network-listener port="8080" protocol="http-listener-1" transport="tcp" 
+name="http-
+
+listener-1" thread-pool="http-thread-pool"></network-listener>
+
+Change the port 8080 to 8888.
+
+Then, start Glassfish by running the following command from the main 
+directory. Command 
+
+path may vary with the directory as long as the user is in one of the 
+right 
+
+subdirectories.
+
+./glassfish4/bin/asadmin start-domain
+
+This command can be used to stop Glassfish:
+
+./glassfish4/bin/asadamin stop-domain domain1
+
+To change the admin password through command line, use the following 
+command:
+
+cd glassfish4/bin/asadmin
+./asadmin change-admin-password --domain_name domain1
+
+The default password is blank, so just hit enter if changing the 
+password for the first 
+
+time. To access DAS remotely, run this command:
+
+./asadmin enable-secure-admin --port 4848
+
+Enter the username (admin) and the password. Then restart the server 
+with the following 
+
+command:
+
+reboot
+
+Access the GlassFish Web Console with a browser.

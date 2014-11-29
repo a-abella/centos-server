@@ -1,0 +1,8 @@
+AuthType Basic
+AuthName "Restricted Files"
+# (Following line optional)
+AuthBasicProvider file
+AuthUserFile /var/www/passwd/passwords
+Require valid-user
+
+AddType application/x-httpd-php .php

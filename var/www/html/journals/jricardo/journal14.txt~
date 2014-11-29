@@ -1,0 +1,105 @@
+10-24-14: Added and configured a network printer with CUPS
+
+HOW-TO:
+
+Log into VMWare and open a web browser, then go to the following url:
+
+http://localhost:631/
+
+From there, click on Add Printer and enter the following:
+
+Name: JCCLPrinter
+Location: JCCL
+Description: HP LaserJet 8000 Postscript
+
+For the Printing Protocol, select http, and use the following URI:
+
+lpd://papermill.cis.fiu.edu/venom
+
+For Make, select HP. For the Model/Driver, select HP LaserJet 8000 Series 
+Postscript.
+
+Then, at the authentication prompt, enter root for the username, followed by the 
+root password.
+
+Full Instructions: http://community.linuxmint.com/tutorial/view/194
+
+Set Duplex Unit to Installed to be able to print in Duplex Model, then enable the 
+Flip on Long 
+
+Edge (standard) Duplex option, and set a Starting Banner.
+
+Then, print a two-page document on this printer in Duplex Mode.
+
+To allow public access to CUPS administration portal after the root account has been 
+
+authenticated, run the following command:
+
+nano /etc/cups/cupsd.conf
+
+Make the following changes:
+
+Change:
+-
+# Only listen for connections from the local machine.
+Listen localhost:631
+Listen /var/run/cups/cups.sock
+-
+to:
+-
+# Only listen for connections from the local machine.
+Listen 131.94.134.13:631
+Listen /var/run/cups/cups.sock
+-
+
+Change:
+-------------------------------
+< Location / >
+# Restrict access to the server...
+Order allow,deny
+< /Location >
+< Location /admin >
+# Restrict access to the admin pages...
+Order allow,deny
+< /Location >
+< Location /admin/conf >
+AuthType Default
+Require user @SYSTEM
+# Restrict access to the configuration files...
+Order allow,deny
+< /Location >
+-------------------------------
+to:
+-------------------------------
+< Location / >
+# Restrict access to the server...
+Order allow,deny
+Allow all
+< /Location >
+< Location /admin >
+# Restrict access to the admin pages...
+Order allow,deny
+Allow all
+< /Location >
+< Location /admin/conf >
+AuthType Default
+Require user @SYSTEM
+# Restrict access to the configuration files...
+Order allow,deny
+Allow all
+< /Location >
+-------------------------------
+
+Restart CUPS with the following command:
+
+service cups restart
+
+The CUPS administration portal should now be public, although it may ask for a 
+certificate for 
+
+authentication purposes.
+
+Full Instructions: 
+http://thismightbehelpful.blogspot.com/2008/09/remote-access-to-cups-web-
+
+interface.html

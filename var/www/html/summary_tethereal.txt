@@ -1,0 +1,10 @@
+From my observations of the in/out bound packets output from the executions of tethereal, I've concluded 
+that when one connects to a web server through SSH via PuTTY, the packets are encrypted so that the 
+connection is secure, and the source IP and the destination IP often alternate in order to guarantee the 
+connection through the use of TCP handshaking, with one of the IPs being the actual server port. Then a 
+few broadcast packets are sent out through VMWare. When connecting to a web browser, not only did I 
+trace the HTTP packets, but also the TCP packets that made for realiability in the connection to the 
+browser. When I pinged google.com, four packets were transmitted and received, with none of them being 
+lost, meaning that google.com is reliable. For the FTP file transfer, I used WinSCP which is an FTP 
+client, and I transfered a file from the web server itself to its host, which is my computer, and 
+several SSH request/response packets were captured, which were created during the FTP file transfer.

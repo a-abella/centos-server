@@ -1,0 +1,51 @@
+  0.000000 Vmware_d6:f3:a1 -> Broadcast    ARP Who has 131.194.134.1?  Tell 131.194.134.16
+  1.201558 131.94.186.14 -> 131.94.134.13 TCP 58573 > ssh [SYN] Seq=0 Win=8192 Len=0 MSS=1460 WS=8
+  1.201623 131.94.134.13 -> 131.94.186.14 TCP ssh > 58573 [SYN, ACK] Seq=0 Ack=1 Win=5840 Len=0 MSS=1460 WS=5
+  1.206289 131.94.186.14 -> 131.94.134.13 TCP 58573 > ssh [ACK] Seq=1 Ack=1 Win=65536 Len=0
+  1.273385 131.94.134.13 -> 131.94.186.14 SSH Server Protocol: SSH-2.0-OpenSSH_4.3
+  1.278462 131.94.186.14 -> 131.94.134.13 SSH Client Protocol: SSH-2.0-PuTTY_Release_0.63\r
+  1.278564 131.94.186.14 -> 131.94.134.13 SSHv2 Client: Key Exchange Init
+  1.278384 131.94.134.13 -> 131.94.186.14 TCP ssh > 58573 [ACK] Seq=21 Ack=29 Win=5856 Len=0
+  1.279384 131.94.134.13 -> 131.94.186.14 TCP ssh > 58573 [ACK] Seq=21 Ack=701 Win=7200 Len=0
+  1.289382 131.94.134.13 -> 131.94.186.14 SSHv2 Server: Key Exchange Init
+  1.296475 131.94.186.14 -> 131.94.134.13 SSHv2 Client: Diffie-Hellman Key Exchange Init
+  1.302380 131.94.134.13 -> 131.94.186.14 SSHv2 Server: Diffie-Hellman Key Exchange Reply
+  1.322433 131.94.186.14 -> 131.94.134.13 TCP 58573 > ssh [ACK] Seq=717 Ack=1005 Win=64512 Len=0
+  1.327293 131.94.186.14 -> 131.94.134.13 SSHv2 Client: Diffie-Hellman GEX Init
+  1.336375 131.94.134.13 -> 131.94.186.14 SSHv2 Server: Diffie-Hellman GEX Reply
+  1.350112 Vmware_f1:f5:a2 -> Broadcast    ARP Who has 131.94.134.4?  Tell 131.94.134.1
+  1.373407 131.94.186.14 -> 131.94.134.13 TCP 58573 > ssh [ACK] Seq=989 Ack=1853 Win=65536 Len=0
+  1.403792 131.94.186.14 -> 131.94.134.13 SSHv2 Client: New Keys
+  1.404665 131.94.186.14 -> 131.94.134.13 SSHv2 Encrypted request packet len=52
+  1.404365 131.94.134.13 -> 131.94.186.14 TCP ssh > 58573 [ACK] Seq=1853 Ack=1057 Win=8544 Len=0
+  1.405365 131.94.134.13 -> 131.94.186.14 SSHv2 Encrypted response packet len=52
+  1.445083 131.94.186.14 -> 131.94.134.13 TCP 58573 > ssh [ACK] Seq=1057 Ack=1905 Win=65536 Len=0
+  1.919904 Vmware_f1:f5:a2 -> Broadcast    ARP Who has 131.94.134.11?  Tell 131.94.134.1
+  1.920523 131.94.186.14 -> 131.94.134.13 SSHv2 Encrypted request packet len=68
+  1.921286 131.94.134.13 -> 131.94.186.14 SSHv2 Encrypted response packet len=84
+  1.932717 131.94.134.13 -> 131.94.134.129 DNS Standard query PTR 14.186.94.131.in-addr.arpa
+  1.934371 131.94.186.14 -> 131.94.134.13 SSHv2 Encrypted request packet len=100
+  1.934411 131.94.134.129 -> 131.94.134.13 DNS Standard query response, No such name
+  1.974500 131.94.134.13 -> 131.94.186.14 TCP ssh > 58573 [ACK] Seq=1989 Ack=1225 Win=8544 Len=0
+  2.315582 131.94.134.13 -> 131.94.186.14 SSHv2 Encrypted response packet len=84
+  2.349230 131.94.186.14 -> 131.94.134.13 TCP 58573 > ssh [ACK] Seq=1225 Ack=2073 Win=65280 Len=0
+  3.525196 Vmware_d6:f3:a1 -> Broadcast    ARP Who has 131.194.134.1?  Tell 131.194.134.16
+  3.591828 131.94.186.14 -> 131.94.134.13 SSHv2 Encrypted request packet len=296
+  3.591873 131.94.134.13 -> 131.94.186.14 TCP ssh > 58573 [ACK] Seq=2073 Ack=1521 Win=9888 Len=0
+  3.596051 131.94.134.13 -> 131.94.186.14 SSHv2 Encrypted response packet len=36
+  3.604107 131.94.186.14 -> 131.94.134.13 SSHv2 Encrypted request packet len=68
+  3.644064 131.94.134.13 -> 131.94.186.14 TCP ssh > 58573 [ACK] Seq=2109 Ack=1589 Win=9888 Len=0
+  3.726012 131.94.134.13 -> 131.94.186.14 SSHv2 Encrypted response packet len=52
+  3.733368 131.94.186.14 -> 131.94.134.13 SSHv2 Encrypted request packet len=100
+  3.733393 131.94.134.13 -> 131.94.186.14 TCP ssh > 58573 [ACK] Seq=2161 Ack=1689 Win=9888 Len=0
+  3.733412 131.94.186.14 -> 131.94.134.13 SSHv2 Encrypted request packet len=52
+  3.733425 131.94.134.13 -> 131.94.186.14 TCP ssh > 58573 [ACK] Seq=2161 Ack=1741 Win=9888 Len=0
+  3.754008 131.94.134.13 -> 131.94.186.14 SSHv2 Encrypted response packet len=124
+  3.759007 131.94.134.13 -> 131.94.186.14 SSHv2 Encrypted response packet len=100
+  3.764365 131.94.186.14 -> 131.94.134.13 TCP 58573 > ssh [ACK] Seq=1741 Ack=2385 Win=65024 Len=0
+  4.144948 131.94.134.13 -> 131.94.186.14 SSHv2 Encrypted response packet len=68
+  4.149947 131.94.134.13 -> 131.94.186.14 SSHv2 Encrypted response packet len=68
+  4.153564 131.94.186.14 -> 131.94.134.13 TCP 58573 > ssh [ACK] Seq=1741 Ack=2521 Win=65024 Len=0
+  4.248953 Vmware_f1:f5:a2 -> Broadcast    ARP Who has 131.94.134.12?  Tell 131.94.134.1
+  5.003505 Vmware_d6:f3:a1 -> Broadcast    ARP Who has 131.194.134.1?  Tell 131.194.134.16
+  6.038744 Vmware_d6:f3:a1 -> Broadcast    ARP Who has 131.194.134.1?  Tell 131.194.134.16

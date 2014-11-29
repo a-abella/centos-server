@@ -1,0 +1,14 @@
+  0.000000 Vmware_f1:f5:a2 -> Vmware_d8:59:bb ARP Who has 131.94.134.13?  Tell 131.94.134.1
+  0.000000 Vmware_d8:59:bb -> Vmware_f1:f5:a2 ARP 131.94.134.13 is at 00:0c:29:d8:59:bb
+  0.118982 131.94.186.14 -> 131.94.134.13 SSH Encrypted request packet len=84
+  0.121204 131.94.134.13 -> 131.94.186.14 SSH Encrypted response packet len=68
+  0.124981 131.94.134.13 -> 23.4.43.27   TCP 42860 > http [ACK] Seq=1 Ack=1 Win=545 Len=0 TSV=105746987 TSER=1646060277
+  0.124981 131.94.186.14 -> 131.94.134.13 SSH Encrypted request packet len=68
+  0.126311 131.94.134.13 -> 131.94.186.14 SSH Encrypted response packet len=84
+  0.129980 131.94.186.14 -> 131.94.134.13 SSH Encrypted request packet len=68
+  0.132044 131.94.134.13 -> 131.94.186.14 SSH Encrypted response packet len=84
+  0.144978   23.4.43.27 -> 131.94.134.13 TCP [TCP ACKed lost segment] http > 42860 [ACK] Seq=1 Ack=2 Win=520 Len=0 TSV=1646106113 TSER=105736987
+  0.145977 131.94.186.14 -> 131.94.134.13 SSH Encrypted request packet len=68
+  0.147977 131.94.134.13 -> 131.94.186.14 SSH Encrypted response packet len=68
+  0.204968 131.94.186.14 -> 131.94.134.13 TCP 13404 > ssh [ACK] Seq=289 Ack=305 Win=256 Len=0
+  1.225813 131.94.186.14 -> 131.94.134.13 SSH Encrypted request packet len=52

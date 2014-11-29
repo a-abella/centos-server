@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+   <head>
+     <title>Team AHKM Server Portal</title>
+   </head>
+
+   <body>
+     <center>
+	<br><br>
+	<font size="20" face="Courier">
+	   <b>Team AHKM Server Portal</b>
+            <br>
+  	    <br>
+            (Temporary Page)
+	    <br>
+	<a href="journals/journalpage.html">Journals</a>
+	    <br>
+	    <br>
+	    <br>
+	<a href="about.html">About This Server</a>
+	</font>
+     </center>
+   </body
+</html>

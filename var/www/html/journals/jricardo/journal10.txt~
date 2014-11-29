@@ -1,0 +1,67 @@
+10-8-14: Enabled User Quotas and set limits
+
+HOW-TO:
+
+Open the fstab file in the /etc directory:
+
+nano /etc/fstab
+
+To enable user quotas for a file system, such as /dev/sdc2, go to the 
+fourth argument marked "default" and change it to "default,usrquota".
+
+Then, remount the file system after saving the /etc/fstab file so the 
+changes take effect, with the following command:
+
+mount -o remount /dev/sdc2
+
+Then, soft and/or hard limits can be set for each user by editing a 
+user's quotas with the following command (profe is the user):
+
+edquota profe
+
+Or one can use the following command:
+
+setquota -u user [soft int] [hard int] [soft int] [hard int] -a 
+/dev/loop0
+(i.e. "setquota -u profe 100 200 10 15 -a /dev/loop0")
+
+Changes can then be tested with the following command (profe is user):
+
+quota profe
+
+A report for user quotas can be generated with any the following 
+commands:
+
+repquota /dev/sdc2
+repquota /ext3part
+
+This is an example of a quota report, documented from a report that I 
+generated after making a few changes to the user limits and using the 
+"edquota [user]" command:
+
+Disk quotas for user profe (uid 600):
+  Filesystem                   blocks       soft       hard     inodes     
+soft     hard
+  /dev/sdc2                         0        100        200          0       
+10       15
+
+Disk quotas for user antonio (uid 601):
+  Filesystem                   blocks       soft       hard     inodes     
+soft     hard
+  /dev/sdc2                         0        100        200          0       
+10       15
+                      0        100        200          0       10       
+15
+Disk quotas for user ricardo (uid 602):
+  Filesystem                   blocks       soft       hard     inodes     
+soft     hard
+  /dev/sdc2                         0        100        200          0       
+10       15
+
+After remounting the filesystem with user quotas enabled, the following 
+
+commands must be run (quota must be turned off first):
+
+quotacheck -ua
+restorecon /ext3part/aquota*
+quotaon -a

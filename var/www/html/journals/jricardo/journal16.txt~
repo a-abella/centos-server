@@ -1,0 +1,57 @@
+10-31-14: Enabled FTP Services
+
+HOW-TO:
+
+First, install VSFTP with the following command:
+
+yum install vsftpd
+
+Make a backup of the vsftpd.conf file in /etc/vsftpd:
+
+cp /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.conf.backup
+
+By default, anonymous users should be able to use FTP, which 
+
+means that the following should not be changed:
+
+anonymous_enable=YES
+
+However to allow anonymous users to upload files, the 
+
+following line needs to be uncommented:
+
+anon_upload_enable=YES
+
+Anonymous users should also be able to download files after 
+
+doing this.
+
+To jail anonymous access, we create a directory for anonymous 
+
+uploads/downloads and add it to vsftpd.conf:
+
+mkdir /var/ftp/pub/anon
+
+Add the following line to vsftpd.conf:
+
+anon_root=/var/ftp/pub/anon
+
+To set up a user account with FTP access so that they can 
+
+upload/download files from their respective home directories, 
+
+we do the following:
+
+Run the following commands:
+
+mkdir /home/user/file
+
+For each user, replacing user with the name of the user, then 
+
+add a password for each user:
+
+htpasswd -c /etc/vsftpd/passwd user
+
+Finally, we add the following line to vsftpd.conf:
+
+chroot_local_enable=YES

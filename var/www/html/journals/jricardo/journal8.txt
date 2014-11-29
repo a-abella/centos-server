@@ -1,0 +1,90 @@
+9-29-14: Downloaded, set up, and configured DhrysStone Benchmark tool.
+
+HOW-TO:
+
+Run the following commands:
+
+rpm -iv dhrystone-2.1-1.src.rpm
+ 
+cd /usr/src/redhat/SPECS
+ 
+nano dhrystone-2.1.spec
+
+Remove the following line from the file "dhrystone-2.1.spec":
+
+Copyright: distributable
+
+Add the following line to "dhrystone-2.1.spec":
+
+License: GPLv2
+
+Run the following commands:
+
+rpmbuild -ba dhrystone-2.1.spec
+
+#rpmbuild -bp dhrystone-2.1.spec
+
+cd /usr/src/redhat/BUILD/dhry2.1
+
+The dry2 and dry2reg executables are found in that subdirectory.
+
+Copy them to /var/www/cgi-bin with the following commands:
+
+cp dry2 /var/www/cgi-bin
+cp dry2reg /var/www/cgi-bin
+
+Create a script called "dhry.cgi" in /var/www/cgi-bin with the following 
+content:
+----------------------------------------------------------------------------------
+#! /usr/bin/perl
+use CGI qw/:standard/;
+$times = param('times');
+print header, start_html("Result");
+print(h1("Result"));
+die("could not execute benchmark")
+# unless (open(LS, "./dry2 $times | tail -3 |"));
+unless (open(LS, "echo $times |./dry2 |"));
+@lsout = <LS>;
+print "<PRE>\n";
+foreach $name (@lsout) {
+chomp($name);
+print $name, "<br>\n";
+}
+print "</PRE>\n";
+print end_html;
+----------------------------------------------------------------------------------
+
+Run the following command:
+
+chmod og+x dhry.cgi
+
+Go to /var/www/html and create a file called "dhry.html".
+
+cd /var/www/html
+
+Enter the following content in "dhry.html":
+---------------------------------------------------------
+<h3>Benchmark example</h3>
+<FORM action=/cgi-bin/dhry.cgi method=get>
+Run benchmark
+<input type=text name=times size=10> times
+<br>
+<input type=submit>
+</form>
+---------------------------------------------------------
+
+Enable cgi scripting by uncommenting "AddHandler cgi-script .cgi" in 
+"httpd.conf".
+
+cd /etc/httpd/conf
+nano httpd.conf
+
+Remove the # in front of "AddHandler cgi-script .cgi" and save the file.
+
+Restart httpd with the following command:
+
+service httpd restart
+
+The script can be tested by going to the server andd adding "/dhry.html" 
+at the end.
+(i.e. http://131.94.134.0/dhry.html)

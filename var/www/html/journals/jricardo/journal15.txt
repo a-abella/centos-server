@@ -1,0 +1,41 @@
+10-29-14: Installed Wireshark (Ethereal) and did the Exercises.
+
+HOW-TO:
+
+yum install ethereal-gnome
+
+To execute this tool, we use the following command:
+
+tethereal
+
+Exercises:
+
+For Exercise 1 and 2 we start up tethereal and redirecting the output to a text file. We do this with 
+the following command:
+
+tethereal > filename.txt
+
+Exercise 1: After running the above command, we logon to the server through SSH with PuTTY (If an 
+instance of PuTTY is already running the capture, we open another instance). Then we stop capturing 
+(Ctrl+C) and trace all the inbound/outbound packets from the ssh interactions.
+
+Exercise 2: After running the command above ExercWe start up Internet Explorer or Firefox and go to our 
+Drupal/Wordpress portal and perform tasks and browsing. After capturing, we trace inbound/outbound 
+packets from the http intractions between the browser and portal.
+
+Exercise 3: We ping google.com and trace the in/out packets resulting from the pinging, then we stop 
+pinging. We do this by running the following command:
+
+ping google.com
+
+(It is recommended that the pings are saved for future reference, we do this by running: "ping 
+google.com > filename.txt")
+
+Exercise 4: With a Linux Virtual Machine (or WinSCP as it is an FTP Client) we perform a file transfer 
+using FTP. We then use this FTP service to transfer a file to the host (performing a file transfer). 
+Then we trace in-bound/out-bound packets from the ftp interaction.
+
+
+With regard to the exercises, I have written a small summary explaining the observations for the trail 
+of in/out bound packets from each interaction between the server and the other end from each exercise, 
+and it is avaliable on the group portal.

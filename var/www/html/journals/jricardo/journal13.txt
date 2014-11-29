@@ -1,0 +1,69 @@
+10-24-14: Several Crontab Entries Added.
+
+HOW-TO:
+
+First, open Crontab.
+
+sudo crontab -e
+
+This is the format for contab entries:
+
+* * * * * /command
+
+First *: minute
+Second *: of hour
+Third *: of day of month
+Fourth *: of month
+Fifth *: on weekday(s).
+
+The following crontab entry would run "yum update" every other day at 1am:
+
+0 1 */2 * * yum update
+
+The following command allows the assignment of a job to a certain user.
+
+crontab -u [user] -e
+
+Alternatively, it is possible to add a crontab entry like this:
+
+* * * * * [user] [command]
+
+To schedule a job for root to run the "uptime" command every six hours and redirects the output 
+
+to a log file, run the following command:
+
+crontab -u root -e
+
+Then add the following crontab entry:
+
+0 */6 * * * uptime >> /var/log/running.log
+
+To schedule a job for the profe account to run ever 2 1/2 hours on weekends and on Thursdays, to 
+
+email a list of currently logged on users and list active running processes, we run the following 
+
+command:
+
+crontab -u profe -e
+
+Then add the following crontab entries:
+
+0 0-23/5 * * 0,4,6 users >> logged_users; ps aux >> active_processes; mutt -s "Current Logon 
+
+Users" -a Desktop/logged_users root@cts4348-node-13.cs.fiu.edu < Desktop/logged_users; mutt -s 
+
+"Current Active Processes" -a Desktop/active_processes root@cts4348-node-13.cs.fiu.edu < 
+
+Desktop/active_processes
+30 2-23/5 * * 0,4,6 users >> logged_users; ps aux >> active_processes; mutt -s "Current Logon 
+
+Users" -a Desktop/logged_users root@cts4348-node-13.cs.fiu.edu < Desktop/logged_users; mutt -s 
+
+"Current Active Processes" -a Desktop/active_processes root@cts4348-node-13.cs.fiu.edu < 
+
+Desktop/active_processes
+
+The reason we use two entries is because one entry by itself cannot be set to run in fractions of 
+hour time units, so we use a second entry to run during the fractioned hours, and the first entry 
+will run during the round hours. Both entries must have the exact same command. In this example, 
+the command will run at hours: 0, 2:30, 5, 7:30, 10, 12:30, etc.

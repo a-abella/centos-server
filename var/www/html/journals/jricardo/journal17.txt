@@ -1,0 +1,92 @@
+11-3-14: Exported Samba
+
+HOW-TO:
+
+All the Step-by-Step instructions were provided for us by the professor 
+and are avaliable here:
+
+---------------------------------------------------------------------------------------------------
+Objective: Install Samba and setup two shares off your linux box, then
+access these shares with the 'smbclient' command as guest and one of
+the user accounts.
+ 
+Install Samba:
+ 
+# yum install samba
+# yum install samba-common
+# yum install samba-client
+ 
+ 
+Check if Samba (or smb) is on, enabled it, and then start the service:
+ 
+# chkconfig --list | grep smb
+# chkconfig smb on
+# service smb status
+# service smb start
+ 
+Create Samba user accounts from the Unix accounts, set password for
+a real user on the system (e.g. joe):
+ 
+# cd /etc/samba
+# smbpasswd –a joe
+ 
+Install SWAT to configure and manage Samba; SWAT uses xinetd to run:
+ 
+# yum install samba-swat
+# chkconfig --list | grep xinetd
+# chkconfig xinetd on
+ 
+Edit xinetd SWAT configuration to enable SWAT:
+ 
+# vi /etc/xinetd.d/swat set 'disable=no' (was disable=yes)
+# service xinetd start
+ 
+ 
+Open firewall ports for Samba, SWAT (port 901):
+ 
+# edit /etc/sysconfig/iptables by hand
+ 
+ 
+Create a directory /home/shared, then make it guest available as SHARED
+ 
+# mkdir /home/shared
+ 
+ 
+Set up Samba share:
+ 
+Open browser, navigate to http://localhost:901 (SWAT Tool).
+Click on 'Global', change workgroup to CTS4348.
+Click Commit Change.
+Click on 'Shares'.
+Type in new share 'SHARED' and then click 'Create new Share'.
+Click on 'Shares' again.
+Select 'SHARED' from the selection box, then 'Change Share'.
+Set the 'path' option to '/home/shared'.
+Set 'guest ok' to 'yes'.
+Set 'available' to 'yes'.
+Click on 'Commit Changes'.
+ 
+(Rather than using the web interface, you could alternatively edit
+/etc/samba/smb.conf manually to add a new share. Make sure to run
+testparm on the modified config.)
+ 
+ 
+Verify your work: See what shares are available on your Samba server
+using user joe:
+ 
+# smbclient -L //localhost -U joe
+ 
+ 
+Connect to the public SHARED folder as user guest:
+ 
+# smbclient //localhost/SHARED -U guest
+ 
+ 
+Conect to joe's home directory on the linux system (homes share) over
+Samba:
+ 
+# smbclient //localhost/joe -U joe
+ 
+(Since SELinux default policy does not allow this, override with:
+/usr/sbin/setsebool -P samba_enable_home_dirs=1)
+---------------------------------------------------------------------------------------------------

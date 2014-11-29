@@ -1,0 +1,19 @@
+11-5-14: Installed and configured Pidgin
+
+HOW-TO:
+
+To install Pidgin, run the following command:
+
+yum install pidgin
+
+Then, log onto the Virtual Machine and go to:
+
+Applications > Internet > Pidgin Internet Messenger
+
+It's important to also install Pidgin as a Windows Client in order to 
+test it by setting up a two-way connection between a Windows client and the client 
+on the Linux server.
+
+To install a server, we follow the steps on this page:
+
+https://www.digitalocean.com/community/tutorials/how-to-run-an-unrealircd-chat-server-on-debian-7

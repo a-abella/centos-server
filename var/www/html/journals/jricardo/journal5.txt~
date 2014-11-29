@@ -1,0 +1,63 @@
+9-17-14: Installed Webmin (Web Based System Administration Tool) and 
+Usermin (Web Based User 
+
+Administration Tool)
+
+HOW-TO:
+
+To install Webmin, run the following commands:
+
+wget 
+http://prdownloads.sourceforge.net/webadmin/webmin-1.650-1.noarch.rpm
+rpm -U webmin-1.650-1.noarch.rpm
+nano /etc/sysconfig/iptables
+
+Delete the RPM Package (webmin-1.650-1.noarch.rpm) to minimize disk 
+usage.
+
+Add the following rule above the REJECT rule:
+
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 10000 
+-j ACCEPT
+
+Then restart IP routing with this command:
+
+service iptables restart
+
+To install Usermin, run the following commands:
+
+wget 
+http://prdownloads.sourceforge.net/webadmin/usermin-1.560-1.noarch.rpm
+rpm –U usermin-1.560-1.noarch.rpm
+
+Log into Webmin as root, find the install page for Usermin, and install 
+the Usermin service, then run 
+
+this command:
+
+service usermin start
+
+Delete the RPM Package (usermin-1.560-1.noarch.rpm) to minimize disk 
+usage.
+
+Add the following rule above the REJECT rule:
+
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 20000 
+-j ACCEPT
+
+Then restart IP routing with this command:
+
+service iptables restart
+
+Installing the "mkpasswd" tool in my server:
+
+yum whatprovides */mkpasswd
+
+This command identifies the proper package that includes this tool, 
+which is "expect-5.43.0-8.el5.i386.rpm".
+
+The following commands download and install the "mkpasswd" tool:
+
+wget 
+ftp://195.220.108.108/linux/centos/5.10/os/x86_64/CentOS/expect-5.43.0-8.el5.i386.rpm
+yum install expect-5.43.0-8.el5.i386.rpm

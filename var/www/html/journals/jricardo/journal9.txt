@@ -1,0 +1,38 @@
+10-1-14: Downloaded and compiled lmbench benckmarking suite.
+
+HOW-TO:
+
+First download the source tgz with the following command:
+
+wget http://www.cs.fiu.edu/~osorioj/lmbench-3.0-a8.tgz
+
+Restore the contents of the file, go into the directory, and compile the 
+application. 
+
+First make a directory for it.
+
+mkdir lmbench
+mv lmbench-3.0-a8.tgz lmbench
+cd lmbench
+tar -xzf lmbench-3.0-a8.tgz
+cd lmbench-3.0-a8
+make
+
+Open the README file and follow its instructions. Set defaults for the 
+program to run.
+
+nano README
+
+After this, reboot to another kernel and repeat the steps in the README 
+file (run the 
+
+benchmark again).
+
+After running the benchmark on both kernels, create a summary report.
+
+cd lmbench-3.0-a8
+make see
+
+Go to the summary.out file that contains the comparison report.
+
+cd results/summary.out

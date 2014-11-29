@@ -1,0 +1,52 @@
+10-16-14: Created a Database for Wordpress
+
+HOW-TO:
+
+Enter the following command followed by the root password.
+
+mysql –u root –p
+
+Once in MySQL, run the following SQL commands:
+
+mysql> CREATE DATABASE [database_name]
+mysql> GRANT ALL PRIVILEGES ON [database_name].* TO 
+
+"[wordpress_username]"@"[hostname]" IDENTIFIED BY "[password]";
+mysql> FLUSH PRIVILEGES;
+mysql> EXIT;
+
+------------------------------------------------------------
+Relocated MySQL Data files to XFS/JFS.
+
+HOW-TO:
+
+Run the following commands, with "destination_filesystem" being the 
+
+directory for the filesystem:
+
+service mysqld stop
+rsync -avz /var/lib/mysql/ /destination_filesystem/mysql
+chown mysql.mysql /destination_filesystem/mysql
+chown mysql.mysql /var/www/html/mysql
+
+Then add or change the value of MySQL configuration file to be mapped 
+into the new directory (adding is reccomended).
+
+nano /etc/my.cnf
+
+Add or change the following line in the file under [mysqld], with 
+
+"destination_filesystem" being the proper filesystem:
+
+datadir = /destination_filesystem/mysql
+
+Now start the MySQL service:
+
+service mysqld start
+
+In the mysql shell, run the following SQL command to verify the datadir 
+
+variable in MySQL:
+
+mysql> SHOW VARIABLES LIKE 'datadir';
+

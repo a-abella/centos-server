@@ -1,0 +1,8 @@
+make[1]: Entering directory `/root/lmbench/lmbench-3.0-a8/results'
+
+                 L M B E N C H  3 . 0   S U M M A R Y
+                 ------------------------------------
+                 (Alpha software, do not distribute)
+
+make[1]: Leaving directory `/root/lmbench/lmbench-3.0-a8/results'
+

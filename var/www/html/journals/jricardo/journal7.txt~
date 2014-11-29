@@ -1,0 +1,79 @@
+9-22-14: Downloaded, installed, and configured GlassFish Server on the 
+VM.
+
+HOW-TO:
+
+Run these commands:
+
+wget  
+http://dlc.sun.com.edgesuite.net/glassfish/4.0/release/glassfish-4.0.zip
+unzip glassfish-4.0.zip
+
+For space efficiency, we delete the zip file:
+
+rm glassfish-4.0.zip 
+
+Then open ports 4848 and 8888.
+
+nano /etc/sysconfig/iptables
+
+Add the following lines to iptables:
+
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 4848 
+-j ACCEPT
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 8888 
+-j ACCEPT
+
+Restart iptables:
+
+service iptables restart
+
+To change default port to 8888:
+
+cd glassfish4/glassfish/domains/domain1/config
+nano domain.xml
+
+Find the following line:
+
+<network-listener port="8080" protocol="http-listener-1" transport="tcp" 
+name="http-
+
+listener-1" thread-pool="http-thread-pool"></network-listener>
+
+Change the port 8080 to 8888.
+
+Then, start Glassfish by running the following command from the main 
+directory. Command 
+
+path may vary with the directory as long as the user is in one of the 
+right 
+
+subdirectories.
+
+./glassfish4/bin/asadmin start-domain
+
+This command can be used to stop Glassfish:
+
+./glassfish4/bin/asadamin stop-domain domain1
+
+To change the admin password through command line, use the following 
+command:
+
+cd glassfish4/bin/asadmin
+./asadmin change-admin-password --domain_name domain1
+
+The default password is blank, so just hit enter if changing the 
+password for the first 
+
+time. To access DAS remotely, run this command:
+
+./asadmin enable-secure-admin --port 4848
+
+Enter the username (admin) and the password. Then restart the server 
+with the following 
+
+command:
+
+reboot
+
+Access the GlassFish Web Console with a browser.
