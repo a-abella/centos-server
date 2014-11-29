@@ -1,0 +1,17 @@
+# Printer configuration file for CUPS v1.3.7
+# Written by cupsd on 2014-10-06 09:03
+<Printer JCCLPrinter>
+Info HP LaserJet 8000 Postscript
+Location JCCL
+DeviceURI lpd://papermill.cis.fiu.edu/venom
+State Idle
+StateTime 1412600441
+Accepting Yes
+Shared Yes
+JobSheets classified none
+QuotaPeriod 0
+PageLimit 0
+KLimit 0
+OpPolicy default
+ErrorPolicy stop-printer
+</Printer>

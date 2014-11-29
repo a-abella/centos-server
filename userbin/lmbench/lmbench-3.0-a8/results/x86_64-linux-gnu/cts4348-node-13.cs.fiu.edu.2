@@ -1,0 +1,105 @@
+[lmbench3.0 results for Linux cts4348-node-13.cs.fiu.edu 2.6.18-prep #1 SMP Wed Sep 17 22:15:12 EDT 2014 x86_64 x86_64 x86_64 GNU/Linux]
+[LMBENCH_VER: 3.0-a8]
+[BENCHMARK_HARDWARE: YES]
+[BENCHMARK_OS: YES]
+[ALL: 512 1k 2k 4k 8k 16k 32k 64k 128k 256k 512k 1m 2m 4m 8m 16m 32m 64m 128m 256m]
+[DISKS: ]
+[DISK_DESC: ]
+[ENOUGH: 1000000]
+[FAST: ]
+[FASTMEM: NO]
+[FILE: /usr/tmp/XXX]
+[FSDIR: /usr/tmp]
+[HALF: 512 1k 2k 4k 8k 16k 32k 64k 128k 256k 512k 1m 2m 4m 8m 16m 32m 64m 128m]
+[INFO: INFO.cts4348-node-13.cs.fiu.edu]
+[LINE_SIZE: ]
+[LOOP_O: 0.00000976]
+[MB: 347]
+[MHZ: 2670 MHz, 0.3745 nanosec clock]
+[MOTHERBOARD: ]
+[NETWORKS: ]
+[PROCESSORS: 2]
+[REMOTE: ]
+[SLOWFS: NO]
+[OS: x86_64-linux-gnu]
+[SYNC_MAX: 1]
+[LMBENCH_SCHED: DEFAULT]
+[TIMING_O: 0]
+[LMBENCH VERSION: 3.0-a8]
+[USER: root]
+[HOSTNAME: cts4348-node-13.cs.fiu.edu]
+[NODENAME: cts4348-node-13.cs.fiu.edu]
+[SYSNAME: Linux]
+[PROCESSOR: x86_64]
+[MACHINE: x86_64]
+[RELEASE: 2.6.18-prep]
+[VERSION: #1 SMP Wed Sep 17 22:15:12 EDT 2014]
+[Tue Sep 30 00:16:58 EDT 2014]
+[ 00:16:58 up 11 min, 1 user, load average: 0.87, 0.92, 0.57]
+[net: Kernel Interface table]
+[net: Iface       MTU Met    RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg]
+[net: eth0       1500   0      743      0      0      0     1115      0      0      0 BMRU]
+[if: eth0      Link encap:Ethernet  HWaddr 00:0C:29:D8:59:BB]
+[if: inet addr:131.94.134.13  Bcast:131.94.134.31  Mask:255.255.255.224]
+[if: UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1]
+[if: RX packets:743 errors:0 dropped:0 overruns:0 frame:0]
+[if: TX packets:1115 errors:0 dropped:0 overruns:0 carrier:0]
+[if: collisions:0 txqueuelen:1000]
+[if: RX bytes:53755 (52.4 KiB)  TX bytes:134671 (131.5 KiB)]
+[if: ]
+[net: lo        16436   0     1871      0      0      0     1871      0      0      0 LRU]
+[if: lo        Link encap:Local Loopback]
+[if: inet addr:127.0.0.1  Mask:255.0.0.0]
+[if: UP LOOPBACK RUNNING  MTU:16436  Metric:1]
+[if: RX packets:1871 errors:0 dropped:0 overruns:0 frame:0]
+[if: TX packets:1871 errors:0 dropped:0 overruns:0 carrier:0]
+[if: collisions:0 txqueuelen:0]
+[if: RX bytes:3266324 (3.1 MiB)  TX bytes:3266324 (3.1 MiB)]
+[if: ]
+[mount: /dev/mapper/VolGroup00-LogVol00 on / type ext3 (rw)]
+[mount: proc on /proc type proc (rw)]
+[mount: sysfs on /sys type sysfs (rw)]
+[mount: devpts on /dev/pts type devpts (rw,gid=5,mode=620)]
+[mount: /dev/sda1 on /boot type ext3 (rw)]
+[mount: tmpfs on /dev/shm type tmpfs (rw)]
+[mount: none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw)]
+[mount: sunrpc on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw)]
+Simple syscall: 0.3853 microseconds
+Simple read: 0.6112 microseconds
+Simple write: 0.6006 microseconds
+Simple stat: 2.7255 microseconds
+Simple fstat: 0.6065 microseconds
+Simple open/close: 4.0603 microseconds
+Select on 10 fd's: 0.8504 microseconds
+Select on 100 fd's: 2.8313 microseconds
+Select on 250 fd's: 5.9825 microseconds
+Select on 500 fd's: 10.7064 microseconds
+Select on 10 tcp fd's: 0.9867 microseconds
+Select on 100 tcp fd's: 6.9420 microseconds
+Select on 250 tcp fd's: 16.7597 microseconds
+Select on 500 tcp fd's: 32.3805 microseconds
+Signal handler installation: 0.2959 microseconds
+Signal handler overhead: 1.1736 microseconds
+Protection fault: 3.3088 microseconds
+Pipe latency: 16.7905 microseconds
+AF_UNIX sock stream latency: 151.8593 microseconds
+Process fork+exit: 6162.2565 microseconds
+Process fork+execve: 10799.3148 microseconds
+Process fork+/bin/sh -c: 19544.7368 microseconds
+integer bit: 0.64 nanoseconds
+integer add: 0.19 nanoseconds
+integer div: 15.58 nanoseconds
+integer mod: 14.70 nanoseconds
+int64 bit: 0.65 nanoseconds
+uint64 add: 0.32 nanoseconds
+int64 mul: 0.23 nanoseconds
+int64 div: 23.46 nanoseconds
+int64 mod: 18.80 nanoseconds
+float add: 1.83 nanoseconds
+float mul: 2.62 nanoseconds
+float div: 9.69 nanoseconds
+double add: 1.70 nanoseconds
+double mul: 3.18 nanoseconds
+double div: 14.46 nanoseconds
+float bogomflops: 8.85 nanoseconds
+double bogomflops: 13.83 nanoseconds

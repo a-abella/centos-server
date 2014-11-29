@@ -1,0 +1,109 @@
+[lmbench3.0 results for Linux cts4348-node-13.cs.fiu.edu 2.6.18-371.12.1.el5 #1 SMP Wed Sep 3 16:22:34 EDT 2014 x86_64 x86_64 x86_64 GNU/Linux]
+[LMBENCH_VER: 3.0-a8]
+[BENCHMARK_HARDWARE: YES]
+[BENCHMARK_OS: YES]
+[ALL: 512 1k 2k 4k 8k 16k 32k 64k 128k 256k 512k 1m 2m 4m 8m 16m 32m 64m 128m 256m]
+[DISKS: ]
+[DISK_DESC: ]
+[ENOUGH: 1000000]
+[FAST: ]
+[FASTMEM: NO]
+[FILE: /usr/tmp/XXX]
+[FSDIR: /usr/tmp]
+[HALF: 512 1k 2k 4k 8k 16k 32k 64k 128k 256k 512k 1m 2m 4m 8m 16m 32m 64m 128m]
+[INFO: INFO.cts4348-node-13.cs.fiu.edu]
+[LINE_SIZE: ]
+[LOOP_O: 0.00039193]
+[MB: 347]
+[MHZ: 2670]
+[MOTHERBOARD: ]
+[NETWORKS: ]
+[PROCESSORS: 2]
+[REMOTE: ]
+[SLOWFS: NO]
+[OS: x86_64-linux-gnu]
+[SYNC_MAX: 1]
+[LMBENCH_SCHED: DEFAULT]
+[TIMING_O: 0]
+[LMBENCH VERSION: 3.0-a8]
+[USER: root]
+[HOSTNAME: cts4348-node-13.cs.fiu.edu]
+[NODENAME: cts4348-node-13.cs.fiu.edu]
+[SYSNAME: Linux]
+[PROCESSOR: x86_64]
+[MACHINE: x86_64]
+[RELEASE: 2.6.18-371.12.1.el5]
+[VERSION: #1 SMP Wed Sep 3 16:22:34 EDT 2014]
+[Mon Sep 29 22:22:59 EDT 2014]
+[ 22:22:59 up 7:36, 3 users, load average: 0.21, 0.79, 0.54]
+[net: Kernel Interface table]
+[net: Iface       MTU Met    RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg]
+[net: eth0       1500   0    41640      0      0      0    11960      0      0      0 BMRU]
+[if: eth0      Link encap:Ethernet  HWaddr 00:0C:29:D8:59:BB]
+[if: inet addr:131.94.134.13  Bcast:131.94.134.31  Mask:255.255.255.224]
+[if: UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1]
+[if: RX packets:41640 errors:0 dropped:0 overruns:0 frame:0]
+[if: TX packets:11960 errors:0 dropped:0 overruns:0 carrier:0]
+[if: collisions:0 txqueuelen:1000]
+[if: RX bytes:35910363 (34.2 MiB)  TX bytes:1108117 (1.0 MiB)]
+[if: ]
+[net: lo        16436   0     1738      0      0      0     1738      0      0      0 LRU]
+[if: lo        Link encap:Local Loopback]
+[if: inet addr:127.0.0.1  Mask:255.0.0.0]
+[if: UP LOOPBACK RUNNING  MTU:16436  Metric:1]
+[if: RX packets:1738 errors:0 dropped:0 overruns:0 frame:0]
+[if: TX packets:1738 errors:0 dropped:0 overruns:0 carrier:0]
+[if: collisions:0 txqueuelen:0]
+[if: RX bytes:3133900 (2.9 MiB)  TX bytes:3133900 (2.9 MiB)]
+[if: ]
+[mount: /dev/mapper/VolGroup00-LogVol00 on / type ext3 (rw)]
+[mount: proc on /proc type proc (rw)]
+[mount: sysfs on /sys type sysfs (rw)]
+[mount: devpts on /dev/pts type devpts (rw,gid=5,mode=620)]
+[mount: /dev/sda1 on /boot type ext3 (rw)]
+[mount: tmpfs on /dev/shm type tmpfs (rw)]
+[mount: none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw)]
+[mount: sunrpc on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw)]
+Simple syscall: 0.3764 microseconds
+Simple read: 0.3484 microseconds
+Simple write: 0.3311 microseconds
+Simple stat: 2.8289 microseconds
+Simple fstat: 0.5642 microseconds
+Simple open/close: 3.0801 microseconds
+Select on 10 fd's: 0.8795 microseconds
+Select on 100 fd's: 2.7617 microseconds
+Select on 250 fd's: 5.6424 microseconds
+Select on 500 fd's: 10.7340 microseconds
+Select on 10 tcp fd's: 0.9679 microseconds
+Select on 100 tcp fd's: 6.9595 microseconds
+Select on 250 tcp fd's: 16.7516 microseconds
+Select on 500 tcp fd's: 32.1723 microseconds
+Signal handler installation: 0.3451 microseconds
+Signal handler overhead: 1.2423 microseconds
+Protection fault: 1.8672 microseconds
+Pipe latency: 12.7273 microseconds
+AF_UNIX sock stream latency: 168.7087 microseconds
+Process fork+exit: 5379.1900 microseconds
+Process fork+execve: 10503.5794 microseconds
+Process fork+/bin/sh -c: 19068.3393 microseconds
+integer bit: 0.65 nanoseconds
+integer add: 0.33 nanoseconds
+integer mul: 0.21 nanoseconds
+integer div: 15.19 nanoseconds
+integer mod: 15.27 nanoseconds
+int64 bit: 0.65 nanoseconds
+uint64 add: 0.34 nanoseconds
+int64 mul: 0.21 nanoseconds
+int64 div: 29.32 nanoseconds
+int64 mod: 30.57 nanoseconds
+float add: 1.91 nanoseconds
+float mul: 2.50 nanoseconds
+float div: 9.55 nanoseconds
+double add: 1.55 nanoseconds
+double mul: 2.43 nanoseconds
+double div: 14.37 nanoseconds
+float bogomflops: 9.17 nanoseconds
+double bogomflops: 12.89 nanoseconds
+integer div parallelism: 3.61
+integer mod parallelism: 2.14
+int64 bit parallelism: 1.29

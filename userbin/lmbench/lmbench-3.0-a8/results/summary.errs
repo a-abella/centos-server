@@ -1,0 +1,3 @@
+x86_64-linux-gnu: lat_mem_rand = 131.301
+x86_64-linux-gnu: no data for Memory load parallelism
+x86_64-linux-gnu: lat_mem_rand = 133.923

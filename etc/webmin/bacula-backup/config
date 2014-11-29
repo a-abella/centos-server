@@ -1,0 +1,14 @@
+init_start=0
+pass=bacula
+db=bacula
+btape=btape
+bextract=bextract
+apply=1
+wait=1
+user=bacula
+showdirs=0
+bls=bls
+driver=mysql
+bacula_dir=/etc/bacula
+groupmode=
+host=
