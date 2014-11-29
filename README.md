@@ -7,6 +7,7 @@ The full configurations for my CentOS 5.11 server from an old semester project. 
 
 <ul>
   <li>Apache webserver configured for two additional name-based virtual hosts, ~user/public_html/ requests, php, and cgi scripting, and .htaccess directory-level access protection
+  <li>Saltstack configuration management, infrastructure automation, and remote cloud execution software
   <li>Apache-Tomcat webserver
   <li>Oracle GlassFish server
   <li>Bacula backup system and scheduler
